@@ -18,7 +18,7 @@
     <div>
         <p>Hello, world!</p>
         <ul>
-        <?php $souce = ['tomato', 'water', 'salt']; ?>
+        <?php $souce = ['tomato', 'water', 'salt', 'peper']; ?>
         <?php foreach($souce as $ingridient): ?>
                 <li>
                     <a href=""><?= $ingridient; ?></a>
