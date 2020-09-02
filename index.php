@@ -97,6 +97,19 @@
         $min = floor((($exp_stamp - $hours * 3600) - $cur_stamp) / 60);
         echo "<br>" . $min . " минут до даты";
     ?>
+
+    <form action="index.php" method="post">
+        <select name="category" id="">
+            <option value = "1">Что-то1</option>
+            <option value = "2">Что-то2</option>
+        </select>
+        <button type="submit" class="button" name="submit">Отправить</button>
+    </form>
+    <?php
+        if (isset($_POST['submit'])) {
+            echo $_POST['category'];
+        }
+    ?>
     </div>
 </body>
 </html>
