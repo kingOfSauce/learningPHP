@@ -98,18 +98,30 @@
         echo "<br>" . $min . " минут до даты";
     ?>
 
-    <form action="index.php" method="post">
-        <select name="category" id="">
-            <option value = "1">Что-то1</option>
-            <option value = "2">Что-то2</option>
-        </select>
-        <button type="submit" class="button" name="submit">Отправить</button>
-    </form>
-    <?php
-        if (isset($_POST['submit'])) {
-            echo $_POST['category'];
-        }
-    ?>
+    
     </div>
+    <br>
+
+    <?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {
+    $name = $_POST['first-name'];
+    $last_name = $_POST['last-name'];
+    $errors = array();
+    if (strlen($name) <= 0 || strlen($name) > 10) {
+        $errors['first-name'] = 'Длина должна быть от 1 до 10 символов';
+    }
+    if (strlen($last_name) <= 0 || strlen($last_name) > 10) {
+        $errors['last-name'] = 'Длина должна быть от 1 до 10 символов';
+    }
+    print_r($errors);
+}
+?>
+    <form method="post" action="index.php">
+    <input type="text" name="first-name" placeholder="Введите имя" value="<?= isset($_POST['first-name']) ? $_POST['first-name'] : "" ?>">
+    <input type="text" name="last-name" placeholder="Введите фамилию" value="<?= isset($_POST['last-name']) ? $_POST['last-name'] : "" ?>">
+    <input type="submit" name="submit">
+    <?= $errors['first-name'] ? $errors['first-name'] : ""; ?>   
+    <?= isset($errors['last-name']) ? $errors['last-name'] : ""; ?>
+    </form>
 </body>
 </html>
